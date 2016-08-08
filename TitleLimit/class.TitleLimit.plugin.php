@@ -3,9 +3,9 @@
 // Let's tell to Vanilla "YEAH WE ARE BOLD AND WE LOVE UNICORNS". 
 $PluginInfo['TitleLimit'] = array(
     'Description' => "This plugin limits the number of words in discussions title. Code based on R_J's work.",
-    'Version' => '1.3',
+    'Version' => '1.4',
     'Author' => "Kube17",
-    'SettingsUrl' => '/plugin/titlelimit',
+    'SettingsUrl' => '/settings/titlelimit',
     'AuthorEmail' => 'bobbamac@hotmail.fr',
     'AuthorUrl' => "http://kube17.tk",
     'License' => 'GNU GPLv2'
@@ -19,20 +19,23 @@ class TitleLimit extends Gdn_Plugin {
         
     }
     
-    public function PluginController_TitleLimit_Create($Sender, $Args = array()) {
+    public function SettingsController_TitleLimit_Create($Sender) {
         
         //Asks Garden for making a settings page. Good boy.
         $Sender->Permission('Garden.Settings.Manage'); 
-        $Sender->AddSideMenu('dashboard/settings/plugins');
-        $Sender->SetData('Title', t('Title Limit Settings')); // I've try to make a french locale with this. Not working WHY ? :'(
+
         $Conf = new ConfigurationModule($Sender);   
         $Conf->Initialize(array(   
             'TitleLimit.MaxTitleWords' => array(   
                 'Control' => 'textbox',   
-                'LabelCode' => T('Words limit in a discussion title.'),   
+                'LabelCode' => t('Words limit in a discussion title'),   
                 'Default' => '5' 
             )   
-        ));   
+        ));
+        
+        $Sender->AddSideMenu();
+        $Sender->SetData('Title', t('Title Limit Settings')); // I've try to make a french locale with this. Not working WHY ? :'(
+        
         $Conf->RenderAll();   
     }
     
@@ -44,4 +47,4 @@ class TitleLimit extends Gdn_Plugin {
     }
 
 }
-//Dont forget to end witha blank line. The next line looks like my life. Empty :'(
+//Dont forget to end witha blank line. The next line looks like my life. Empty. :'(
