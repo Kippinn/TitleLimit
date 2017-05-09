@@ -1,7 +1,7 @@
 <?php if (!defined('APPLICATION')) exit();
 
 // Let's tell to Vanilla "YEAH WE ARE BOLD AND WE LOVE UNICORNS". 
-$PluginInfo['TitleLimit'] = array(
+$PluginInfo['titleLimit'] = array(
     'Description' => "This plugin limits the number of words in discussions title. Code based on R_J's work.",
     'Version' => '1.4',
     'Author' => "Kube17",
